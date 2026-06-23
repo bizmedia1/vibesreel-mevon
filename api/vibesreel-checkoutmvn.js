@@ -28,18 +28,6 @@ return res.status(200).json({
   raw_response: text
 });
 
-    let parsed;
-    try {
-      const result = JSON.parse(text);
-      parsed = result.raw ? JSON.parse(result.raw) : result;
-    } catch {
-      return res.status(500).json({ error: text });
-    }
-
-    return res.status(200).json(parsed);
-payments[reference] = {
-status: "pending"
-}
   } catch (err) {
     return res.status(500).json({
       error: err.message
