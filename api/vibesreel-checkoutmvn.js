@@ -25,6 +25,12 @@ export default async function handler(req, res) {
     const text = await response.text();
 
 return res.status(200).json({
+  payload_sent: {
+    type: "rubies",
+    fname: "John",
+    lname: "Doe",
+    registration_number: "8675848"
+  },
   raw_response: text
 });
 
