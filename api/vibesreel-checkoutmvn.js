@@ -15,25 +15,31 @@ export default async function handler(req, res) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-  type: "rubies",
-  fname: "John",
-  lname: "Doe",
-  registration_number: "8675848"
-})
+        fname: "John",
+        lname: "Doe"
+      })
     });
 
     const text = await response.text();
 
-return res.status(200).json({
-  payload_sent: {
-    type: "rubies",
-    fname: "John",
-    lname: "Doe",
-    registration_number: "8675848"
-  },
-  raw_response: text
-});
+    let parsed;
+    try {
+      const result = JSON.parse(text);
+      parsed = result.raw ? JSON.parse(result.raw) : result;
+    } catch {
+      return res.status(500).json({ error: text });
+    }
 
+    return res.status(200).json({
+      account_number: parsed.account_number,
+      account_name: parsed.account_name,
+      bank_name: parsed.bank_name,
+      amount: 14000,
+      reference: parsed.reference
+    });
+payments[reference] = {
+status: "pending"
+}
   } catch (err) {
     return res.status(500).json({
       error: err.message
