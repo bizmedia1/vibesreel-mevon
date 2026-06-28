@@ -18,7 +18,19 @@ export default async function handler(req, res) {
 
   try {
 
-    const { amount } = req.body;
+    const {
+
+amount,
+
+firstName,
+
+lastName,
+
+phone,
+
+email
+
+} = req.body;
 
     const response = await fetch(
       "https://mevonpay.com.ng/V1/createtempva",
@@ -28,10 +40,17 @@ export default async function handler(req, res) {
           Authorization: process.env.MEVON_SECRET_KEY,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-          fname: "John",
-          lname: "Doe"
-        })
+        body:JSON.stringify({
+
+fname:firstName,
+
+lname:lastName,
+
+phone:phone,
+
+email:email
+
+})
       }
     );
 
